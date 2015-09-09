@@ -1,4 +1,5 @@
-class Game < ActiveRecord::Base
+class Game
+  include MongoMapper::Document
   include Api::V1::GameErrors
   
   before_save :update_state

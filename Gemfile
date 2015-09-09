@@ -4,7 +4,6 @@ ruby '1.9.3'
 gem 'pg'
 gem 'rails'
 
-gem 'mongo_mapper'
 gem 'bson_ext'
 gem 'unicorn'
 gem 'responders', '~> 2.0'

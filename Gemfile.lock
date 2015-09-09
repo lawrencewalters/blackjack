@@ -55,18 +55,9 @@ GEM
     mime-types (2.6.1)
     mini_portile (0.6.2)
     minitest (5.8.0)
-    mongo (1.12.3)
-      bson (= 1.12.3)
-    mongo_mapper (0.13.1)
-      activemodel (>= 3.0.0)
-      activesupport (>= 3.0)
-      mongo (~> 1.8)
-      plucky (~> 0.6.5)
     nokogiri (1.6.6.2)
       mini_portile (~> 0.6.0)
     pg (0.18.3)
-    plucky (0.6.6)
-      mongo (~> 1.5)
     rack (1.6.4)
     rack-test (0.6.3)
       rack (>= 1.0)
@@ -135,7 +126,6 @@ PLATFORMS
 
 DEPENDENCIES
   bson_ext
-  mongo_mapper
   pg
   rails
   responders (~> 2.0)

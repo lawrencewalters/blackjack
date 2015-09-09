@@ -7,14 +7,14 @@ class Card
   @@VALS = [11, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10]
   
   def self.to_s(card)
-    @@RANK[card % @@RANK.length] + @@SUIT[card % @@SUIT.length]
+    @@RANK[card.to_i % @@RANK.length] + @@SUIT[card.to_i % @@SUIT.length]
   end
   
   def self.to_i(card)
-    @@VALS[card % @@VALS.length]
+    @@VALS[card.to_i % @@VALS.length]
   end
   
   def self.is_ace?(card)
-    (card % @@RANK.length) == 0
+    (card.to_i % @@RANK.length) == 0
   end  
 end

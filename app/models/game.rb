@@ -3,19 +3,16 @@ class Game < ActiveRecord::Base
   
   before_save :update_state
   before_create :bootstrap
-  
-  #  XXX - Probably good to have a transaction id/log as well for db consistency and audit'ing but not for this version
-  key :deck, Array                                      # i don't really need to store the entire deck. 
-                                                        # really only need the first N (todo: next version).
-  key :player_hand, Array, :alias => :ph
-  key :dealer_hand, Array, :alias => :dh
-  key :playing, Boolean, :alias => :p                   # false if game over -- could implicitly determine
-  key :num_decks, Integer, :alias => :n
-  key :rules, Integer, :alias => :r                     # surrender avail, double down etc...
-  key :dealer_type, Integer, :alias => :dt              # dealer behavior -- stand on soft-17 etc...
-  key :seed, Integer, :alias => :s                      # in case we want to reproduce a hand history assuming identical rng implementations
-  key :outcome, Hash, :alias => :o                      # cache game state
-  
+
+  alias_attribute :ph, :player_hand
+  alias_attribute :dh, :dealer_hand
+  alias_attribute :p, :playing
+  alias_attribute :n, :num_decks
+  alias_attribute :r, :rules
+  alias_attribute :dt, :dealer_type
+  alias_attribute :s, :seed
+  alias_attribute :o, :outcome
+
   #  Dealer BJ seed 1349999491
   
   #
@@ -61,7 +58,7 @@ class Game < ActiveRecord::Base
       self.playing = true
       start_game if player_hand.empty? && dealer_hand.empty? # really only need to check this when i want to setup hands in the debugger for testing
       self.outcome = @rule_engine.solve(self)
-      self.playing = self.outcome[:winner] == :none
+      self.playing = self.outcome["winner"] == "none"
       self.deck = @shoe.to_a
     end
     
